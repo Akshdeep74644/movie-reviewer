@@ -56,9 +56,14 @@ export default function Home() {
       {apiData.results?.map((elem, indx) => (
         <MovieCard
           key={indx}
-          src={`https://image.tmdb.org/t/p/w500${elem.poster_path}`}
+          src={
+            elem.poster_path
+              ? `https://image.tmdb.org/t/p/w500${elem.poster_path}`
+              : "https://cdn.vectorstock.com/i/1000v/29/33/movie-and-film-poster-design-template-background-vector-43522933.jpg"
+          }
           title={elem.original_title}
           rating={elem.vote_average}
+          id={elem.id}
         />
       ))}
   </div>
