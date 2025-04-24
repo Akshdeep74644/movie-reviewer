@@ -28,7 +28,7 @@ function Page({ params }) {
   }, [id]);
 
   console.log(castallData)
-  if (!singleMoviedetails) return <div>Loading...</div>;
+  if (!singleMoviedetails) return <div className="h-screen w-full flex justify-center items-center text-8xl">Loading...</div>;
 
   return (
     <>

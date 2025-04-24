@@ -52,7 +52,7 @@ export default function Home() {
     </div>
 
     {
-      loader ? <Loader /> : <div className="grid relative grid-cols-2 md:grid-cols-4 gap-5">
+      loader ? <Loader /> : <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
       {apiData.results?.map((elem, indx) => (
         <MovieCard
           key={indx}
