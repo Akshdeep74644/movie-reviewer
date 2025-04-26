@@ -14,7 +14,7 @@ export default function Home() {
 
   const fetchMoviedata = async () =>{
     try {
-      const api = "c45a857c193f6302f2b5061c3b85e743"
+      const api = "your_api"
       let apiUrl = '';
       if(searchInput){
         apiUrl = `https://api.themoviedb.org/3/search/movie?api_key=${api}&language=en-US&query=${searchInput}&page=${pageNo}`;
