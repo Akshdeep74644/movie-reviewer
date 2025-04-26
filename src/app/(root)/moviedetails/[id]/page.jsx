@@ -5,6 +5,7 @@ function Page({ params }) {
   const { id } = use(params);
   const [singleMoviedetails, setsingleMoviedetails] = useState(null);
   const [castallData, setcastallData] = useState([]);
+  console.log(id)
 
   useEffect(() => {
     const singleMovie = async () => {
@@ -50,7 +51,7 @@ function Page({ params }) {
               <h2>Rating: {singleMoviedetails.vote_average}/10</h2>
               <h3 className="flex">
                 Timing: {singleMoviedetails.runtime} | &nbsp;
-                {singleMoviedetails.genres.map((elem, idex) => (
+                {singleMoviedetails.genres?.map((elem, idex) => (
                   <span key={idex}>{elem.name}&nbsp;|&nbsp;</span>
                 ))}
               </h3>

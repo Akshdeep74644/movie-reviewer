@@ -1,10 +1,13 @@
 "use client";
 import React, { useEffect, useState, use } from "react";
+import Pagebtn from "../../component/Pagebtn";
+import { useRouter } from "next/navigation";
 
 function Page() {
   const [topMovieData, settopMovieData] = useState([]);
   const [pageNo, setpageNo] = useState(1);
   const [totalPage, settotalPage] = useState(null)
+  const [id, setid] = useState(0)
 
   useEffect(() => {
     const topMovie = async () => {
@@ -19,7 +22,13 @@ function Page() {
     topMovie();
   }, [pageNo]);
 
-  console.log(topMovieData);
+
+  const router = useRouter();
+  const movierouteID = (id) => {
+    router.push(`/moviedetails/${id}`);
+  };
+
+  console.log(topMovieData)
   return (
     <>
       <div className="relative">
@@ -29,7 +38,7 @@ function Page() {
           ) : (
             <div>
               {topMovieData.map((data, index) => (
-               <div className="flex gap-10 bg-zinc-900/90 p-5 rounded-2xl w-full">
+               <div key={index} className="flex gap-10 bg-zinc-900/90 p-5 rounded-2xl w-full">
                <img
                   src={
                     data.poster_path
@@ -42,12 +51,12 @@ function Page() {
                <div className="text-xl font-semibold opacity-[0.7] flex flex-col gap-5 mt-10">
                  <h2 className="text-4xl font-bold">{data.title}</h2>
                  <h2>Rating: {data.vote_average}/10</h2>
-                 <h3 className="flex">
-                   Timing: {data.runtime} | &nbsp;
-                 </h3>
                  <h3>Release date: {data.release_date}</h3>
                  <h3>Overview:</h3>
                  <p>{data.overview}</p>
+                 <h3 className="cursor-pointer" onClick={()=> movierouteID(data.id)}>
+            Know more
+          </h3>
                </div>
              </div>
               ))}
@@ -55,12 +64,8 @@ function Page() {
           )}
         </div>
 
-        <div className="flex justify-center items-center mt-8 gap-3">
-        <div className="cursor-pointer px-5 py-2 bg-zinc-800 rounded-3xl" disabled={pageNo === 1} onClick={() => setpageNo((prev)=> Math.max(prev - 1, 1))}>Back</div>
-        <div>{pageNo} of {totalPage}</div>
-        <div className="cursor-pointer px-5 py-2 bg-zinc-800 rounded-3xl" disabled={pageNo === totalPage} onClick={() => setpageNo((prev)=> Math.max(prev + 1, 1))}>Next</div>
-      </div>
-      </div>
+        <Pagebtn pageNo={pageNo} totalPage={totalPage} setpageNo={setpageNo} />
+        </div>
     </>
   );
 }

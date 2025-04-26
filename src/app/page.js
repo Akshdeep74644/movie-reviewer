@@ -3,6 +3,7 @@ import Image from "next/image";
 import MovieCard from "./component/MovieCard";
 import Loader from "./component/Loader";
 import { useEffect, useState } from "react";
+import Pagebtn from "./component/Pagebtn"
 
 export default function Home() {
   const [pageNo, setpageNo] = useState(1);
@@ -69,11 +70,7 @@ export default function Home() {
   </div>
     }
 
-  <div className="flex justify-center items-center mt-8 gap-3">
-        <div className="cursor-pointer px-5 py-2 bg-zinc-800 rounded-3xl" disabled={pageNo === 1} onClick={() => setpageNo((prev)=> Math.max(prev - 1, 1))}>Back</div>
-        <div>{pageNo} of {totalPage}</div>
-        <div className="cursor-pointer px-5 py-2 bg-zinc-800 rounded-3xl" disabled={pageNo === totalPage} onClick={() => setpageNo((prev)=> Math.max(prev + 1, 1))}>Next</div>
-      </div>
+    <Pagebtn pageNo={pageNo} totalPage={totalPage} setpageNo={setpageNo} />
 </>
   );
 }
