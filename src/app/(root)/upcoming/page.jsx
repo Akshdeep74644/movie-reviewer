@@ -11,7 +11,7 @@ function Page() {
   useEffect(() => {
     const topMovie = async () => {
       const topMovieapi = await fetch(
-        `https://api.themoviedb.org/3/movie/upcoming?api_key=c45a857c193f6302f2b5061c3b85e743&language=en-US&page=${pageNo}`
+        `https://api.themoviedb.org/3/movie/upcoming?api_key=your_api&language=en-US&page=${pageNo}`
       );
       const topmoviedata = await topMovieapi.json();
       settopMovieData(topmoviedata.results);
