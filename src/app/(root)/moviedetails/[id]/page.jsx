@@ -10,7 +10,7 @@ function Page({ params }) {
   useEffect(() => {
     const singleMovie = async () => {
       const apiFetch = await fetch(
-        `https://api.themoviedb.org/3/movie/${id}?api_key=c45a857c193f6302f2b5061c3b85e743&language=en-US`
+        `https://api.themoviedb.org/3/movie/${id}?api_key=your_api&language=en-US`
       );
       const moviedata = await apiFetch.json();
       setsingleMoviedetails(moviedata);
@@ -18,7 +18,7 @@ function Page({ params }) {
 
     const castApiurl = async () => {
       const castApi = await fetch(
-        `https://api.themoviedb.org/3/movie/${id}/credits?api_key=c45a857c193f6302f2b5061c3b85e743&language=en-US`
+        `https://api.themoviedb.org/3/movie/${id}/credits?api_key=your_api&language=en-US`
       );
       const castdata = await castApi.json();
       setcastallData(castdata.cast)
